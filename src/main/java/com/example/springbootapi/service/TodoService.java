@@ -11,4 +11,6 @@ public interface TodoService {
 
      List<Todo> getAllTodo();
 
+     Todo getTodoId(String id) throws TodoException;
+
 }

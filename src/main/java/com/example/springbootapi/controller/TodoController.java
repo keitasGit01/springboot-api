@@ -45,4 +45,15 @@ public class TodoController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
     }
+
+    @GetMapping("/todos/{id}")
+    public ResponseEntity<?> getSingleTodo(@PathVariable String id) throws TodoException {
+        try{
+            return new ResponseEntity<>(service.getTodoId(id), HttpStatus.OK);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+
+    }
 }
