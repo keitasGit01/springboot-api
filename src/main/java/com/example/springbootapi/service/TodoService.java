@@ -13,4 +13,7 @@ public interface TodoService {
 
      Todo getTodoId(String id) throws TodoException;
 
+      void updatedTodo(String id, Todo todo) throws TodoException;
+      void deleteTodo(String id) throws TodoException;
+
 }

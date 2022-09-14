@@ -56,4 +56,30 @@ public class TodoController {
         }
 
     }
+
+    @PutMapping("/todos/{id}")
+    public ResponseEntity<?> updatedTodo(@PathVariable String id, @RequestBody Todo todo){
+        try {
+            service.updatedTodo(id, todo);
+            return new ResponseEntity<>("Updated to do with id " + id, HttpStatus.OK);
+        }catch (ConstraintViolationException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+        }catch (TodoException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/todos/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable String id){
+        try {
+            service.deleteTodo(id);
+            return new ResponseEntity<>("Successfull delete with id "  + id, HttpStatus.OK);
+
+        }catch (Exception e){
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+
+        }
+    }
+
 }
